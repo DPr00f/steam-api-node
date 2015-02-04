@@ -7,7 +7,7 @@ describe('News Specs / ', function(){
   });
 
   it('Should have the correct endpoint', function(){
-    expect(news.buildUrl()).toBe('http://api.steampowered.com/ISteamNews/v2/');
+    expect(news.buildUrl()).toBe('http://api.steampowered.com/ISteamNews/');
   });
 
   it('Should get news for app', function(done){

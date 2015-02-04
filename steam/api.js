@@ -11,5 +11,6 @@ function mixin(target, source) {
 
 mixin(exports, {
   Client: require('./Client'),
-  News: require('./News')
+  News: require('./News'),
+  App: require('./App')
 });

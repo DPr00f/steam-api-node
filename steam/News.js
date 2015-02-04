@@ -1,7 +1,7 @@
 module.exports = (function(){
+  "use strict";
   var Client = require('./Client'),
-      q = require('q'),
-      __function__ = require('./helpers').__function__;
+      q = require('q');
 
   function News() {
     Client.apply(this, arguments);
@@ -17,7 +17,7 @@ module.exports = (function(){
     if (!count) {
       count = 5;
     }
-    this.setMethod( __function__(arguments) );
+    this.setMethod( "GetNewsForApp" );
     this.setVersion(2);
 
     args = {
