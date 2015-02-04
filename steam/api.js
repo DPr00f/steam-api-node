@@ -1,16 +1,9 @@
-var restler = require('restler');
-
-function mixin(target, source) {
-  source = source || {};
-  Object.keys(source).forEach(function(key) {
-    target[key] = source[key];
-  });
-
-  return target;
-}
+var restler = require('restler'),
+    mixin = require('./helpers').mixin;
 
 mixin(exports, {
   Client: require('./Client'),
   News: require('./News'),
-  App: require('./App')
+  App: require('./App'),
+  User: require('./User')
 });

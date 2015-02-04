@@ -1,8 +1,8 @@
 module.exports = (function(undefined){
   "use strict";
-  
+
   function App(app) {
-    this.id = app.steam_appid;
+    this.id                 = app.steam_appid;
     this.name               = app.name;
     this.controllerSupport  = app.controller_support ? app.controller_support : 'None';
     this.description        = app.detailed_description;
@@ -33,8 +33,6 @@ module.exports = (function(undefined){
       final: 'No Price Found'
     };
   }
-
-
-
+  
   return App;
 })();
