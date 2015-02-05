@@ -177,7 +177,7 @@ module.exports = (function(){
     client = this.setupService(args);
 
     client.then(function(result){
-      deferred.resolve( _t.convertToObjects(result.data.response.games) );
+      deferred.resolve( _t.cleanGames(result.data.response.games) );
     })
     .fail(function(result){
       deferred.reject(result);
@@ -212,7 +212,7 @@ module.exports = (function(){
 
     client.then(function(result){
       if (result.data.response.total_count > 0) {
-        deferred.resolve( _t.convertToObjects(result.data.response.games) );
+        deferred.resolve( _t.cleanGames(result.data.response.games) );
       }else{
         deferred.resolve( [] );
       }
@@ -253,7 +253,7 @@ module.exports = (function(){
     return deferred.promise;
   };
 
-  Player.prototype.convertToObjects = function convertToObjects(games) {
+  Player.prototype.cleanGames = function cleanGames(games) {
     var cleanedGames = [];
 
     for( var gameNumber in games ){

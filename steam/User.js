@@ -36,7 +36,7 @@ module.exports = (function(){
     client = this.setupClient(args);
 
     client.then(function(result){
-      bans = _t.convertToObjects(result.data.players, BansContainer);
+      bans = _t.cleanObject(result.data.players, BansContainer);
       deferred.resolve( bans.length === 1 ? bans[0] : bans );
     })
     .fail(function(result){
@@ -67,7 +67,7 @@ module.exports = (function(){
     client = this.setupClient(args);
 
     client.then(function(result){
-      players = _t.convertToObjects(result.data.response.players, PlayerContainer);
+      players = _t.cleanObject(result.data.response.players, PlayerContainer);
       deferred.resolve( players.length === 1 ? players[0] : players );
     })
     .fail(function(result){
@@ -173,7 +173,7 @@ module.exports = (function(){
     return deferred.promise;
   };
 
-  User.prototype.convertToObjects = function convertToObjects(players, Container) {
+  User.prototype.cleanObject = function cleanObject(players, Container) {
     var cleanedPlayers = [];
 
     for( var player in players ){

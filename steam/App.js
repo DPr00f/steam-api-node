@@ -29,7 +29,7 @@ module.exports = (function(){
     client = this.setupClient(args);
 
     client.then(function(result){
-      apps = _t.convertToObjects(result.data);
+      apps = _t.cleanApps( result.data );
       deferred.resolve(apps.length == 1 ? apps[0] : apps);
     })
     .fail(function(result){
@@ -110,9 +110,8 @@ module.exports = (function(){
     return deferred.promise;
   };
 
-  App.prototype.convertToObjects = function convertToObjects(apps) {
+  App.prototype.cleanApps = function cleanApps(apps) {
     var cleanedApps = [];
-
     for( var appId in apps ){
       cleanedApps.push(new AppContainer(apps[appId].data));
     }
