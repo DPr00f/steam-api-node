@@ -1,7 +1,7 @@
 var api = require('../steam/api'),
     stats;
 describe('UserStats Specs / ', function(){
-
+  jasmine.getEnv().defaultTimeoutInterval = 30000;
   beforeEach(function(){
     stats = new api.UserStats(undefined, '76561197963455129');
   });

@@ -1,5 +1,7 @@
 var api = require('../steam/api');
 describe('Client Specs / ', function(){
+  jasmine.getEnv().defaultTimeoutInterval = 30000;
+  
   it('Should squawk if no steam api', function(){
     oldEnv = process.env;
     process.env = {};

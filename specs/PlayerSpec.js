@@ -1,7 +1,8 @@
 var api = require('../steam/api'),
     player;
 describe('Player Specs / ', function(){
-
+  jasmine.getEnv().defaultTimeoutInterval = 30000;
+  
   beforeEach(function(){
     player = new api.Player(undefined, '76561197963455129');
   });

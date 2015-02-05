@@ -1,7 +1,8 @@
 var api = require('../steam/api'),
     news;
 describe('News Specs / ', function(){
-
+  jasmine.getEnv().defaultTimeoutInterval = 30000;
+  
   beforeEach(function(){
     news = new api.News();
   });

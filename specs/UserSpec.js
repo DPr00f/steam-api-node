@@ -1,7 +1,8 @@
 var api = require('../steam/api'),
     user;
 describe('User Specs / ', function(){
-
+  jasmine.getEnv().defaultTimeoutInterval = 30000;
+  
   beforeEach(function(){
     user = new api.User(undefined, '76561197963455129');
   });

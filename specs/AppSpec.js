@@ -1,6 +1,7 @@
 var api = require('../steam/api'),
     app;
 describe('App Specs / ', function(){
+  jasmine.getEnv().defaultTimeoutInterval = 30000;
 
   beforeEach(function(){
     app = new api.App();
