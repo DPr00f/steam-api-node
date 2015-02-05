@@ -4,6 +4,16 @@ module.exports = (function(){
       q = require('q'),
       AchievementContainer = require('../containers/Achievement');
 
+  function cleanAchievements(achievements) {
+    var cleanedAchievements = [];
+
+    for( var achievementNumber in achievements ){
+      cleanedAchievements.push(new AchievementContainer(achievements[achievementNumber]));
+    }
+
+    return cleanedAchievements;
+  };
+
   function Stats() {
     Client.apply(this, arguments);
     this.setInterface('ISteamUserStats');
@@ -105,8 +115,7 @@ module.exports = (function(){
   Stats.prototype.GetPlayerAchievements = function GetPlayerAchievements(appId, steamId) {
     var deferred = q.defer(),
         args,
-        client,
-        _t = this;
+        client;
 
     this.setMethod('GetPlayerAchievements');
     this.setVersion(1);
@@ -124,7 +133,7 @@ module.exports = (function(){
     client = this.setupClient(args);
 
     client.then(function(result){
-      deferred.resolve( _t.cleanAchievements(result.data.playerstats.achievements) );
+      deferred.resolve( cleanAchievements(result.data.playerstats.achievements) );
     })
     .fail(function(result){
       deferred.reject(result);
@@ -188,17 +197,6 @@ module.exports = (function(){
     });
 
     return deferred.promise;
-  };
-
-
-  Stats.prototype.cleanAchievements = function cleanAchievements(achievements) {
-    var cleanedAchievements = [];
-
-    for( var achievementNumber in achievements ){
-      cleanedAchievements.push(new AchievementContainer(achievements[achievementNumber]));
-    }
-
-    return cleanedAchievements;
   };
 
   return Stats;

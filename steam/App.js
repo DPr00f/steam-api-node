@@ -4,6 +4,16 @@ module.exports = (function(){
       q = require('q'),
       AppContainer = require('./containers/App');
 
+
+  function cleanApps(apps) {
+    var cleanedApps = [];
+    for( var appId in apps ){
+      cleanedApps.push(new AppContainer(apps[appId].data));
+    }
+
+    return cleanedApps;
+  };
+
   function App() {
     Client.apply(this, arguments);
     this.setInterface('ISteamApps');
@@ -15,7 +25,6 @@ module.exports = (function(){
     var deferred = q.defer(),
         args,
         client,
-        _t = this,
         apps;
     this.setUrl('http://store.steampowered.com/');
     this.setInterface('api');
@@ -29,7 +38,7 @@ module.exports = (function(){
     client = this.setupClient(args);
 
     client.then(function(result){
-      apps = _t.cleanApps( result.data );
+      apps = cleanApps( result.data );
       deferred.resolve(apps.length == 1 ? apps[0] : apps);
     })
     .fail(function(result){
@@ -108,15 +117,6 @@ module.exports = (function(){
     });
 
     return deferred.promise;
-  };
-
-  App.prototype.cleanApps = function cleanApps(apps) {
-    var cleanedApps = [];
-    for( var appId in apps ){
-      cleanedApps.push(new AppContainer(apps[appId].data));
-    }
-
-    return cleanedApps;
   };
 
   return App;

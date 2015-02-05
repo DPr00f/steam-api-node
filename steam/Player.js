@@ -5,6 +5,16 @@ module.exports = (function(){
       LevelContainer = require('./containers/player/Level'),
       GameContainer = require('./containers/Game');
 
+  function cleanGames(games) {
+    var cleanedGames = [];
+
+    for( var gameNumber in games ){
+      cleanedGames.push(new GameContainer(games[gameNumber]));
+    }
+
+    return cleanedGames;
+  };
+
   function Player() {
     Client.apply(this, arguments);
     this.setInterface('IPlayerService');
@@ -136,8 +146,7 @@ module.exports = (function(){
   Player.prototype.GetOwnedGames = function GetOwnedGames(steamId, includeAppInfo, includePlayedFreeGames, appIdsFilter) {
     var deferred = q.defer(),
         args,
-        client,
-        _t = this;
+        client;
 
     this.setMethod('GetOwnedGames');
     this.setVersion(1);
@@ -177,7 +186,7 @@ module.exports = (function(){
     client = this.setupService(args);
 
     client.then(function(result){
-      deferred.resolve( _t.cleanGames(result.data.response.games) );
+      deferred.resolve( cleanGames(result.data.response.games) );
     })
     .fail(function(result){
       deferred.reject(result);
@@ -190,7 +199,6 @@ module.exports = (function(){
   Player.prototype.GetRecentlyPlayedGames = function GetRecentlyPlayedGames(count, steamId) {
     var deferred = q.defer(),
         args,
-        _t = this,
         client;
 
     this.setMethod('GetRecentlyPlayedGames');
@@ -212,7 +220,7 @@ module.exports = (function(){
 
     client.then(function(result){
       if (result.data.response.total_count > 0) {
-        deferred.resolve( _t.cleanGames(result.data.response.games) );
+        deferred.resolve( cleanGames(result.data.response.games) );
       }else{
         deferred.resolve( [] );
       }
@@ -251,16 +259,6 @@ module.exports = (function(){
     });
 
     return deferred.promise;
-  };
-
-  Player.prototype.cleanGames = function cleanGames(games) {
-    var cleanedGames = [];
-
-    for( var gameNumber in games ){
-      cleanedGames.push(new GameContainer(games[gameNumber]));
-    }
-
-    return cleanedGames;
   };
 
   return Player;

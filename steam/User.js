@@ -5,6 +5,16 @@ module.exports = (function(){
       BansContainer = require('./containers/player/Bans'),
       PlayerContainer = require('./containers/Player');
 
+  function cleanObject(players, Container) {
+    var cleanedPlayers = [];
+
+    for( var player in players ){
+      cleanedPlayers.push(new Container(players[player]));
+    }
+
+    return cleanedPlayers;
+  };
+
   function User() {
     Client.apply(this, arguments);
     this.setInterface('ISteamUser');
@@ -19,8 +29,7 @@ module.exports = (function(){
     var deferred = q.defer(),
         args,
         client,
-        bans,
-        _t = this;
+        bans;
 
     this.setMethod('GetPlayerBans');
     this.setVersion(1);
@@ -36,7 +45,7 @@ module.exports = (function(){
     client = this.setupClient(args);
 
     client.then(function(result){
-      bans = _t.cleanObject(result.data.players, BansContainer);
+      bans = cleanObject(result.data.players, BansContainer);
       deferred.resolve( bans.length === 1 ? bans[0] : bans );
     })
     .fail(function(result){
@@ -50,8 +59,7 @@ module.exports = (function(){
     var deferred = q.defer(),
         args,
         client,
-        players,
-        _t = this;
+        players;
 
     this.setMethod('GetPlayerSummaries');
     this.setVersion(2);
@@ -67,7 +75,7 @@ module.exports = (function(){
     client = this.setupClient(args);
 
     client.then(function(result){
-      players = _t.cleanObject(result.data.response.players, PlayerContainer);
+      players = cleanObject(result.data.response.players, PlayerContainer);
       deferred.resolve( players.length === 1 ? players[0] : players );
     })
     .fail(function(result){
@@ -171,16 +179,6 @@ module.exports = (function(){
     });
 
     return deferred.promise;
-  };
-
-  User.prototype.cleanObject = function cleanObject(players, Container) {
-    var cleanedPlayers = [];
-
-    for( var player in players ){
-      cleanedPlayers.push(new Container(players[player]));
-    }
-
-    return cleanedPlayers;
   };
 
   return User;
