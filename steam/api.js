@@ -5,5 +5,6 @@ mixin(exports, {
   Client: require('./Client'),
   News: require('./News'),
   App: require('./App'),
-  User: require('./User')
+  User: require('./User'),
+  Player: require('./Player')
 });
