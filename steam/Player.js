@@ -172,15 +172,15 @@ module.exports = (function(){
     };
 
     if (includeAppInfo) {
-      arguments['includeAppInfo'] = includeAppInfo;
+      args['include_appinfo'] = includeAppInfo;
     }
 
     if (includePlayedFreeGames) {
-      arguments['include_played_free_games'] = includePlayedFreeGames;
+      args['include_played_free_games'] = includePlayedFreeGames;
     }
 
     if (appIdsFilter.length > 0) {
-      arguments['appids_filter'] = appIdsFilter;
+      args['appids_filter'] = appIdsFilter;
     }
 
     client = this.setupService(args);
