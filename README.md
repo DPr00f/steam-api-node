@@ -135,8 +135,9 @@ player.GetOwnedGames(
 
 # Release Changes
 
-## 1.0.4
+## 1.1.0
 
+ - Added Access to Community URL's
  - Introduced Inventory from community.
 
 # More Info
