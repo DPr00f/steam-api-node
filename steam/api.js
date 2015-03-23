@@ -7,5 +7,7 @@ mixin(exports, {
   App: require('./App'),
   User: require('./User'),
   Player: require('./Player'),
-  UserStats: require('./User/Stats')
+  UserStats: require('./User/Stats'),
+  Community: require('./Community'),
+  Inventory: require('./Inventory')
 });
