@@ -8,11 +8,13 @@ module.exports = (function(){
   function cleanApps(apps) {
     var cleanedApps = [];
     for( var appId in apps ){
-      cleanedApps.push(new AppContainer(apps[appId].data));
+      if(apps[appId]){
+        cleanedApps.push(new AppContainer(apps[appId].data));
+      }
     }
 
     return cleanedApps;
-  };
+  }
 
   function App() {
     Client.apply(this, arguments);
@@ -20,6 +22,7 @@ module.exports = (function(){
   }
 
   App.prototype = Client.prototype;
+  App.prototype.constructor = App;
 
   App.prototype.appDetails = function appDetails(appId) {
     var deferred = q.defer(),
@@ -39,14 +42,14 @@ module.exports = (function(){
 
     client.then(function(result){
       apps = cleanApps( result.data );
-      deferred.resolve(apps.length == 1 ? apps[0] : apps);
+      deferred.resolve(apps.length === 1 ? apps[0] : apps);
     })
     .fail(function(result){
       deferred.reject(result);
     });
 
     return deferred.promise;
-  }
+  };
 
   App.prototype.GetAppList = function GetAppList() {
     var deferred = q.defer(),
@@ -103,7 +106,7 @@ module.exports = (function(){
     this.setVersion(1);
 
     args = {
-      'appid': appid,
+      'appid': appId,
       'version': version
     };
 

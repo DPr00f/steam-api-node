@@ -9,11 +9,13 @@ module.exports = (function(){
     var cleanedGames = [];
 
     for( var gameNumber in games ){
-      cleanedGames.push(new GameContainer(games[gameNumber]));
+      if(games[gameNumber]){
+        cleanedGames.push(new GameContainer(games[gameNumber]));
+      }
     }
 
     return cleanedGames;
-  };
+  }
 
   function Player() {
     Client.apply(this, arguments);
@@ -151,15 +153,15 @@ module.exports = (function(){
     this.setMethod('GetOwnedGames');
     this.setVersion(1);
 
-    if (includeAppInfo == undefined) {
+    if (includeAppInfo === undefined) {
       includeAppInfo = true;
     }
 
-    if (includePlayedFreeGames == undefined) {
+    if (includePlayedFreeGames === undefined) {
       includePlayedFreeGames = false;
     }
 
-    if (appIdsFilter == undefined) {
+    if (appIdsFilter === undefined) {
       appIdsFilter = [];
     }
 

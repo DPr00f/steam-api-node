@@ -25,7 +25,7 @@ module.exports = (function(){
       count: count
     };
     if (maxLength) {
-      args.maxlength = maxlength;
+      args.maxlength = maxLength;
     }
 
     client = this.setupClient(args);

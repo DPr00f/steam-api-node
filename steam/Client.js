@@ -11,7 +11,7 @@ module.exports = (function (undefined){
       version,
       apiFormat,
       steamId,
-      isService;
+      isService_;
 
   function Client(steamApiKey) {
     if (!steamApiKey) {
@@ -37,58 +37,58 @@ module.exports = (function (undefined){
 
   Client.prototype.getUrl = function getUrl(){
     return url;
-  }
+  };
 
   Client.prototype.setUrl = function setUrl(value){
     url = value;
-  }
+  };
 
   Client.prototype.getInterface = function getInterface(){
     return interface_;
-  }
+  };
 
   Client.prototype.setInterface = function setInterface(value){
     interface_ = value;
-  }
+  };
 
   Client.prototype.getMethod = function getMethod(){
     return method;
-  }
+  };
 
   Client.prototype.setMethod = function setMethod(value){
     method = value;
-  }
+  };
 
   Client.prototype.getVersion = function getVersion(){
     return version;
-  }
+  };
 
   Client.prototype.setVersion = function setVersion(value){
     version = value;
-  }
+  };
 
   Client.prototype.getApiFormat = function getApiFormat(){
     return apiFormat;
-  }
+  };
 
   Client.prototype.setApiFormat = function setApiFormat(value){
     apiFormat = value;
-  }
+  };
 
   Client.prototype.getSteamId = function getSteamId(){
     return steamId;
-  }
+  };
 
   Client.prototype.setSteamId = function setSteamId(value){
     steamId = value;
-  }
+  };
 
   Client.prototype.isService = function isService(value){
     if (!value){
-      return isService;
+      return isService_;
     }
-    isService = value;
-  }
+    isService_ = value;
+  };
 
   /** Public **/
   Client.prototype.buildUrl = function buildUrl(version) {
@@ -155,7 +155,7 @@ module.exports = (function (undefined){
         });
 
     return deferred.promise;
-  }
+  };
 
   Client.prototype.setupClient = function setupClient(args) {
     var parameters,
@@ -207,7 +207,7 @@ module.exports = (function (undefined){
         });
 
     return deferred.promise;
-  }
+  };
 
   return Client;
 })();

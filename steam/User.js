@@ -9,11 +9,13 @@ module.exports = (function(){
     var cleanedPlayers = [];
 
     for( var player in players ){
-      cleanedPlayers.push(new Container(players[player]));
+      if(players[player]){
+        cleanedPlayers.push(new Container(players[player]));
+      }
     }
 
     return cleanedPlayers;
-  };
+  }
 
   function User() {
     Client.apply(this, arguments);
@@ -114,7 +116,9 @@ module.exports = (function(){
       steamIds = [];
       friendsList = result.data.friendslist.friends;
       for (var i in friendsList){
-        steamIds.push(friendsList[i].steamid);
+        if(friendsList[i]){
+          steamIds.push(friendsList[i].steamid);
+        }
       }
       _t.GetPlayerSummaries(steamIds.join()).done(function(friends){
         deferred.resolve(friends);
@@ -130,8 +134,7 @@ module.exports = (function(){
   User.prototype.GetUserGroupList = function GetUserGroupList(steamId) {
     var deferred = q.defer(),
         args,
-        client,
-        _t = this;
+        client;
 
     this.setMethod('GetUserGroupList');
     this.setVersion(1);
@@ -159,8 +162,7 @@ module.exports = (function(){
   User.prototype.ResolveVanityUrl = function ResolveVanityUrl(vanityUrl) {
     var deferred = q.defer(),
         args,
-        client,
-        _t = this;
+        client;
 
     this.setMethod('ResolveVanityUrl');
     this.setVersion(1);
