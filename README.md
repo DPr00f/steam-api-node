@@ -141,6 +141,14 @@ player.GetOwnedGames(
 
 # Release Changes
 
+## 1.1.2
+
+ - Added Steam API IEconItems support (although the Community Inventory seems to be better for games like CS:GO)
+
+## 1.1.1
+
+ - Lint and BugFixes
+
 ## 1.1.0
 
  - Added Access to Community URL's
