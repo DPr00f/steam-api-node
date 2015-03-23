@@ -1,17 +1,17 @@
 'use strict';
 var api = require('../steam/api'),
-    inventory;
+    items;
 
-describe('Inventory Specs / ', function(){
+describe('Items Specs / ', function(){
   jasmine.getEnv().defaultTimeoutInterval = 30000;
 
   beforeEach(function(){
-    inventory = new api.Inventory(undefined, '76561197963455129');
+    items = new api.Items(undefined, '76561197963455129');
   });
 
   it('should grab the correct inventory', function(done) {
-    inventory.GetAppItems(730).done(function(result){
-      expect(result.length > 5).toBe(true);
+    items.GetPlayerItems(730).done(function(result){
+      expect(result.items.length > 5).toBe(true);
       done();
     });
   });

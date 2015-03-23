@@ -10,5 +10,6 @@ mixin(exports, {
   Player: require('./Player'),
   UserStats: require('./User/Stats'),
   Community: require('./Community'),
-  Inventory: require('./Inventory')
+  Inventory: require('./Inventory'),
+  Items: require('./Items')
 });
