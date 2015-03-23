@@ -1,6 +1,6 @@
 {
   "name": "steam-api",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Steam Web Api Integration",
   "main": "index.js",
   "scripts": {
@@ -28,6 +28,7 @@
     "jasmine-node": "^1.14.5"
   },
   "dependencies": {
+    "merge": "^1.2.0",
     "q": "^1.1.2",
     "restler": "^3.2.2"
   }
