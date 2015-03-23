@@ -7,6 +7,7 @@ Node Wrapper to communicate with Steam Web API
 Please refer to [http://steamid.co/](http://steamid.co/) or [http://steamidconverter.com/](http://steamidconverter.com/) to find the user steam id.
 
 
+
 # Install
 `npm install steam-api`
 
@@ -20,7 +21,12 @@ var userStats = new SteamApi.UserStats('steam-api-key', optionalSteamId);
 var news = new SteamApi.News('steam-api-key');
 var app = new SteamApi.App('steam-api-key');
 var player = new SteamApi.Player('steam-api-key', optionalSteamId);
+var inventory = new SteamApi.Inventory('steam-api-key', optionalSteamId);
 
+// Inventory
+inventory.GetAppItems(appId, optionalSteamId).done(function(result){
+  console.log(result);
+});
 
 // User methods
 user.GetPlayerBans(optionalSteamId).done(function(result){
@@ -126,6 +132,12 @@ player.GetOwnedGames(
   console.log(result);
 });
 ```
+
+# Release Changes
+
+## 1.0.4
+
+ - Introduced Inventory from community.
 
 # More Info
 Please Refer to the tests folder to get more information on how to use the library
