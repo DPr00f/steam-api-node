@@ -1,7 +1,7 @@
 'use strict';
-
 var api = require('../steam/api'),
     inventory;
+    
 describe('Inventory Specs / ', function(){
   jasmine.getEnv().defaultTimeoutInterval = 30000;
 

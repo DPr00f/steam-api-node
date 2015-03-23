@@ -1,5 +1,6 @@
-var restler = require('restler'),
-    mixin = require('./helpers').mixin;
+"use strict";
+
+var mixin = require('./helpers').mixin;
 
 mixin(exports, {
   Client: require('./Client'),
