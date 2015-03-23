@@ -22,6 +22,12 @@ var news = new SteamApi.News('steam-api-key');
 var app = new SteamApi.App('steam-api-key');
 var player = new SteamApi.Player('steam-api-key', optionalSteamId);
 var inventory = new SteamApi.Inventory('steam-api-key', optionalSteamId);
+var items = new SteamApi.Items('steam-api-key', optionalSteamId);
+
+// Steam API Backpack
+items.GetPlayerItems(appId, optionalSteamId).done(function(result){
+  console.log(result);
+});
 
 // Inventory
 inventory.GetAppItems(appId, optionalSteamId).done(function(result){
