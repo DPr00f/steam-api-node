@@ -1,6 +1,6 @@
 {
   "name": "steam-api",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "Steam Web Api Integration",
   "main": "index.js",
   "scripts": {
