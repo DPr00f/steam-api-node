@@ -4,7 +4,8 @@ module.exports = (function(undefined){
   function Game(app) {
     this.appId                    = app.appid;
     this.name                     = app.name ? app.name : undefined;
-    this.playtimeTwoWeeks         = app.playtime_2weeks ? this.convertFromMinutes(app.playtime_2weeks) : '0 minutes';
+    this.playtimeTwoWeeks         = app.playtime_2weeks ? app.playtime_2weeks : 0;
+    this.playtimeTwoWeeksReadable = app.playtime_2weeks ? this.convertFromMinutes(app.playtime_2weeks) : '0 minutes';
     this.playtimeForever          = app.playtime_forever ? app.playtime_forever : 0;
     this.playtimeForeverReadable  = this.convertFromMinutes(this.playtimeForever);
     this.icon                     = app.img_icon_url ? this.getImageForGame(app.appid, app.img_icon_url) : undefined;
