@@ -21,8 +21,8 @@ module.exports = (function (undefined){
     }
 
     apiKey = steamApiKey;
-    this.interface = null;
     this.setUrl("http://api.steampowered.com/");
+    this.setInterface(null);
     this.setVersion(2);
     this.setApiFormat('json');
     this.isService(false);
