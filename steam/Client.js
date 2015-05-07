@@ -6,7 +6,6 @@ module.exports = (function (undefined){
       http_build_query = require('./helpers').http_build_query,
       apiKey,
       url,
-      interface_,
       method,
       version,
       apiFormat,
@@ -22,6 +21,7 @@ module.exports = (function (undefined){
     }
 
     apiKey = steamApiKey;
+    this.interface = null;
     this.setUrl("http://api.steampowered.com/");
     this.setVersion(2);
     this.setApiFormat('json');
@@ -44,11 +44,11 @@ module.exports = (function (undefined){
   };
 
   Client.prototype.getInterface = function getInterface(){
-    return interface_;
+    return this.interface;
   };
 
   Client.prototype.setInterface = function setInterface(value){
-    interface_ = value;
+    this.interface = value;
   };
 
   Client.prototype.getMethod = function getMethod(){
