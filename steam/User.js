@@ -25,7 +25,8 @@ module.exports = (function(){
     }
   }
 
-  User.prototype = Client.prototype;
+  User.prototype = Object.create(Client.prototype);
+  User.prototype.constructor = User;
 
   User.prototype.GetPlayerBans = function GetPlayerBans(steamId) {
     var deferred = q.defer(),

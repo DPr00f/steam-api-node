@@ -8,7 +8,8 @@ module.exports = (function(){
     this.setInterface('ISteamNews');
   }
 
-  News.prototype = Client.prototype;
+  News.prototype = Object.create(Client.prototype);
+  News.prototype.constructor = News;
 
   News.prototype.GetNewsForApp = function GetNewsForApp(appId, count, maxLength) {
     var deferred = q.defer(),

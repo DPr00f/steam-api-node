@@ -27,8 +27,9 @@ module.exports = (function(){
     }
   }
 
-  Player.prototype = Client.prototype;
-
+  Player.prototype = Object.create(Client.prototype);
+  Player.prototype.constructor = Player;
+ 
   Player.prototype.GetSteamLevel = function GetSteamLevel(steamId) {
     var deferred = q.defer(),
         args,

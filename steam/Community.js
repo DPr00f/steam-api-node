@@ -16,7 +16,7 @@ module.exports = (function(undefined){
     }
   }
 
-  Community.prototype = Client.prototype;
+  Community.prototype = Object.create(Client.prototype);
   Community.prototype.constructor = Community;
 
   Community.prototype.setRequestUrl = function setRequestUrl(url) {
