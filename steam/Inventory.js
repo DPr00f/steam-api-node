@@ -29,7 +29,7 @@ module.exports = (function(){
     this.setContext(2);
   }
 
-  Inventory.prototype = Community.prototype;
+  Inventory.prototype = Object.create(Community.prototype);
   Inventory.prototype.constructor = Inventory;
 
 

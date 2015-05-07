@@ -11,7 +11,7 @@ module.exports = (function(undefined){
     }
   }
 
-  Item.prototype = Client.prototype;
+  Item.prototype = Object.create(Client.prototype);
   Item.prototype.constructor = Item;
 
   Item.prototype.GetPlayerItems = function GetPlayerItems(appId, steamId) {

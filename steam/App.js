@@ -21,7 +21,7 @@ module.exports = (function(){
     this.setInterface('ISteamApps');
   }
 
-  App.prototype = Client.prototype;
+  App.prototype = Object.create(Client.prototype);
   App.prototype.constructor = App;
 
   App.prototype.appDetails = function appDetails(appId) {

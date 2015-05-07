@@ -5,7 +5,6 @@ module.exports = (function (undefined){
       mixin = require('./helpers').mixin,
       http_build_query = require('./helpers').http_build_query,
       apiKey,
-      url,
       method,
       version,
       apiFormat,
@@ -36,11 +35,11 @@ module.exports = (function (undefined){
   };
 
   Client.prototype.getUrl = function getUrl(){
-    return url;
+    return this.url;
   };
 
   Client.prototype.setUrl = function setUrl(value){
-    url = value;
+    this.url = value;
   };
 
   Client.prototype.getInterface = function getInterface(){
