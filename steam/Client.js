@@ -3,13 +3,7 @@ module.exports = (function (undefined){
   var rest = require('restler'),
       q = require('q'),
       mixin = require('./helpers').mixin,
-      http_build_query = require('./helpers').http_build_query,
-      apiKey,
-      method,
-      version,
-      apiFormat,
-      steamId,
-      isService_;
+      http_build_query = require('./helpers').http_build_query;
 
   function Client(steamApiKey) {
     if (!steamApiKey) {
@@ -19,9 +13,8 @@ module.exports = (function (undefined){
       steamApiKey = process.env.STEAM_API_KEY;
     }
 
-    apiKey = steamApiKey;
+    this.apiKey = steamApiKey;
     this.setUrl("http://api.steampowered.com/");
-    this.setInterface(null);
     this.setVersion(2);
     this.setApiFormat('json');
     this.isService(false);
@@ -31,7 +24,7 @@ module.exports = (function (undefined){
 
   /** Getters / Setters **/
   Client.prototype.getApiKey = function getApiKey() {
-    return apiKey;
+    return this.apiKey;
   };
 
   Client.prototype.getUrl = function getUrl(){
@@ -43,50 +36,50 @@ module.exports = (function (undefined){
   };
 
   Client.prototype.getInterface = function getInterface(){
-    return this.interface;
+    return this.interface_;
   };
 
   Client.prototype.setInterface = function setInterface(value){
-    this.interface = value;
+    this.interface_ = value;
   };
 
   Client.prototype.getMethod = function getMethod(){
-    return method;
+    return this.method;
   };
 
   Client.prototype.setMethod = function setMethod(value){
-    method = value;
+    this.method = value;
   };
 
   Client.prototype.getVersion = function getVersion(){
-    return version;
+    return this.version;
   };
 
   Client.prototype.setVersion = function setVersion(value){
-    version = value;
+    this.version = value;
   };
 
   Client.prototype.getApiFormat = function getApiFormat(){
-    return apiFormat;
+    return this.apiFormat;
   };
 
   Client.prototype.setApiFormat = function setApiFormat(value){
-    apiFormat = value;
+    this.apiFormat = value;
   };
 
   Client.prototype.getSteamId = function getSteamId(){
-    return steamId;
+    return this.steamId;
   };
 
   Client.prototype.setSteamId = function setSteamId(value){
-    steamId = value;
+    this.steamId = value;
   };
 
   Client.prototype.isService = function isService(value){
     if (!value){
-      return isService_;
+      return this.isService_;
     }
-    isService_ = value;
+    this.isService_ = value;
   };
 
   /** Public **/
