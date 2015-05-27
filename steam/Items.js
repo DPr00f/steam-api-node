@@ -17,8 +17,7 @@ module.exports = (function(undefined){
   Item.prototype.GetPlayerItems = function GetPlayerItems(appId, steamId) {
     var deferred = q.defer(),
         args,
-        client,
-        bans;
+        client;
     this.setInterface('IEconItems_' + appId);
     this.setMethod('GetPlayerItems');
     this.setVersion(1);
