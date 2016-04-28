@@ -41,6 +41,39 @@ module.exports = (function(undefined){
 
     return deferred.promise;
   };
+  
+  Item.prototype.GetSchema = function GetSchema(appId) {
+    var deferred = q.defer(),
+        args,
+        client;
+    this.setInterface('IEconItems_' + appId);
+    this.setMethod('GetSchema');
+    this.setVersion(2);
+
+    if (!steamId) {
+      steamId = this.getSteamId();
+    }
+
+    args = {
+      'key': this.getApiKey()
+    };
+    
+    console.log(this.getApiKey());
+    
+    client = this.setupClient(args);
+    
+    var url = this.getUrl();
+    
+    console.log(url);    
+    client.then(function(result){
+      deferred.resolve( result.data.result );
+    })
+    .fail(function(result){
+      deferred.reject(result);
+    });
+
+    return deferred.promise;
+  };
 
   return Item;
 
