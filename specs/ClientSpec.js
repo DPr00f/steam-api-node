@@ -23,6 +23,6 @@ describe('Client Specs / ', function(){
     var client = new api.Client('this-was-set');
 
     expect(function(){ client.setSteamId(99007199254740991); })
-        .toThrow(new Error('SteamId should be a string when larger than MAX_SAFE_INTEGER 9007199254740991'));
+      .toThrow(new Error('SteamId should be a string when larger than MAX_SAFE_INTEGER 9007199254740991'));
   });
 });
