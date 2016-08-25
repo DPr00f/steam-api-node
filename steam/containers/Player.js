@@ -17,6 +17,9 @@ module.exports = (function(undefined){
     this.personaStateFlags        = player.personastateflags ? player.personastateflags : undefined;
     this.countryCode              = player.loccountrycode;
     this.stateCode                = player.locstatecode;
+    // Optional fields returned if user is in game and has public profile
+    this.gameid                   = player.gameid;
+    this.gameextrainfo            = player.gameextrainfo;
   }
 
   Player.prototype.convertPersonaState = function convertPersonaState(personaState) {
