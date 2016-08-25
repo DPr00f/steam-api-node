@@ -72,6 +72,15 @@ module.exports = (function (undefined){
   };
 
   Client.prototype.setSteamId = function setSteamId(value){
+    // polyfill for less than es2015
+    Number.isSafeInteger = Number.isSafeInteger || function (value) {
+      return typeof value === 'number' && Math.abs(value) <= Number.MAX_SAFE_INTEGER;
+    };
+
+    if (typeof value === 'number' && ! Number.isSafeInteger(value)) {
+      throw new Error('SteamId should be a string when larger than MAX_SAFE_INTEGER 9007199254740991');
+    }
+
     this.steamId = value;
   };
 
