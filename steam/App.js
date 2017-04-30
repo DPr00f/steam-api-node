@@ -8,7 +8,7 @@ module.exports = (function(){
   function cleanApps(apps) {
     var cleanedApps = [];
     for( var appId in apps ){
-      if(apps[appId]){
+      if(apps[appId] && apps[appId].success){
         cleanedApps.push(new AppContainer(apps[appId].data));
       }
     }
@@ -42,7 +42,11 @@ module.exports = (function(){
 
     client.then(function(result){
       apps = cleanApps( result.data );
-      deferred.resolve(apps.length === 1 ? apps[0] : apps);
+      if( apps.length ) {
+        deferred.resolve(apps.length === 1 ? apps[0] : apps);
+      } else {
+        deferred.reject(result.data);
+      }
     })
     .fail(function(result){
       deferred.reject(result);
