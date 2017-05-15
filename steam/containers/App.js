@@ -3,9 +3,11 @@ module.exports = (function(undefined){
 
   function App(app) {
     this.id                 = app.steam_appid;
+    this.type               = app.type;
     this.name               = app.name;
     this.controllerSupport  = app.controller_support ? app.controller_support : 'None';
     this.description        = app.detailed_description;
+    this.shortDescription   = app.short_description;
     this.about              = app.about_the_game;
     this.header             = app.header_image;
     this.website            = !app.website ? app.website : 'None';
