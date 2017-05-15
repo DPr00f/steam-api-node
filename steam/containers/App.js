@@ -21,6 +21,7 @@ module.exports = (function(undefined){
     this.categories         = app.categories ? app.categories : undefined;
     this.genres             = app.genres ? app.genres : undefined;
     this.release            = app.release_date;
+    this.screenshots        = app.screenshots ? app.screenshots.map(function(s){ return s.path_full; }) : undefined;
   }
 
   App.prototype.getFakeMetacriticObject = function getFakeMetacriticObject(){
