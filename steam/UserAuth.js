@@ -38,11 +38,7 @@ module.exports = (function(){
     client = this.setupClient(args);
 
     client.then(function(result){
-    //   players = cleanObject(result.data.response.players, PlayerContainer);
-    //   deferred.resolve( players.length === 1 ? players[0] : players );
-        //console.log(result.data.response.params);
         var auth = new AuthContainer(result.data.response.params);
-        console.log(auth);
         deferred.resolve(auth);
     })
     .fail(function(result){
