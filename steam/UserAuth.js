@@ -38,10 +38,15 @@ module.exports = (function(){
     client = this.setupClient(args);
 
     client.then(function(result){
-        var auth = new AuthContainer(result.data.response.params);
-        deferred.resolve(auth);
+        if(result.data.error != 'undefined' && result.data.error != null) {
+            deferred.reject(result.data);
+        }
+        else {
+            var auth = new AuthContainer(result.data.response.params);
+            deferred.resolve(auth);
+        }
     })
-    .fail(function(result){
+    .catch(function(result){
       deferred.reject(result);
     });
 
