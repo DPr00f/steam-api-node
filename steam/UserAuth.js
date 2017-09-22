@@ -38,7 +38,7 @@ module.exports = (function(){
     client = this.setupClient(args);
 
     client.then(function(result){
-        if(result.data.response.error != 'undefined' && result.data.response.error != null) {
+        if(result.data.response.error != null && result.data.response.error != null) {
             deferred.reject(result.data.response);
         }
         else {
