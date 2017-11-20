@@ -13,7 +13,7 @@ Please refer to [http://steamid.co/](http://steamid.co/) or [http://steamidconve
 
 # Usage
 Note that the `'steam-api-key'` can be defined as an environment variable, with the name of `STEAM_API_KEY`
-```
+```es6
 var SteamApi = require('steam-api');
 
 var user = new SteamApi.User('steam-api-key', optionalSteamId);
