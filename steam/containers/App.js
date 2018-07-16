@@ -22,6 +22,7 @@ module.exports = (function(undefined){
     this.genres             = app.genres ? app.genres : undefined;
     this.release            = app.release_date;
     this.screenshots        = app.screenshots ? app.screenshots.map(function(s){ return s.path_full; }) : undefined;
+    this.package_groups     = app.package_groups;
   }
 
   App.prototype.getFakeMetacriticObject = function getFakeMetacriticObject(){
