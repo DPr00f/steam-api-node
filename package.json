@@ -1,6 +1,6 @@
 {
   "name": "steam-api",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Steam Web Api Integration",
   "main": "index.js",
   "scripts": {
@@ -25,11 +25,11 @@
     "url": "https://github.com/DPr00f/steam-api-node/issues"
   },
   "devDependencies": {
-    "jasmine-node": "^1.14.5"
+    "jasmine-node": "^3.0.0"
   },
   "dependencies": {
-    "merge": "^1.2.0",
-    "q": "^1.1.2",
-    "restler": "^3.2.2"
+    "merge": "^1.2.1",
+    "q": "^1.5.1",
+    "restler-base": "latest"
   }
 }
