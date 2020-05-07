@@ -1,17 +1,17 @@
-module.exports = (function(undefined){
+module.exports = (function (undefined) {
   "use strict";
-  var Client = require('./Client'),
-      rest = require('restler'),
-      q = require('q'),
-      requestUrl,
-      context;
+  var Client = require("./Client"),
+    rest = require("restler-base"),
+    q = require("q"),
+    requestUrl,
+    context;
 
   function Community() {
     Client.apply(this, arguments);
-    this.setUrl('http://steamcommunity.com/');
-    this.setInterface('profiles');
+    this.setUrl("http://steamcommunity.com/");
+    this.setInterface("profiles");
 
-    if(arguments.length > 1){
+    if (arguments.length > 1) {
       this.setSteamId(arguments[1]);
     }
   }
@@ -38,15 +38,15 @@ module.exports = (function(undefined){
   Community.prototype.buildCommunityUrl = function buildCommunityUrl() {
     var url = this.getUrl();
     if (this.getInterface()) {
-      url += this.getInterface() + '/';
+      url += this.getInterface() + "/";
     }
 
     if (this.getSteamId()) {
-      url += this.getSteamId() + '/';
+      url += this.getSteamId() + "/";
     }
 
     if (this.getRequestUrl()) {
-      url +=  this.getRequestUrl() + '/';
+      url += this.getRequestUrl() + "/";
     }
 
     return url;
@@ -54,39 +54,40 @@ module.exports = (function(undefined){
 
   Community.prototype.setupCommunity = function setupCommunity() {
     var steamUrl,
-        deferred = q.defer();
+      deferred = q.defer();
 
     steamUrl = this.buildCommunityUrl();
 
-    rest.get(steamUrl)
-        .on('success', function restlerComplete(data, response){
-          deferred.resolve({
-            status: 'ok',
-            data: data,
-            response: response
-          });
-        })
-        .on('fail', function restlerFail(data, response){
-          deferred.reject({
-            status: 'fail',
-            data: data,
-            response: response
-          });
-        })
-        .on('timeout', function restlerTimeout(ms){
-          deferred.reject({
-            status: 'timeout',
-            data: ms,
-            response: {}
-          });
-        })
-        .on('error', function restlerError(err, response){
-          deferred.reject({
-            status: 'error',
-            data: err,
-            response: response
-          });
+    rest
+      .get(steamUrl)
+      .on("success", function restlerComplete(data, response) {
+        deferred.resolve({
+          status: "ok",
+          data: data,
+          response: response,
         });
+      })
+      .on("fail", function restlerFail(data, response) {
+        deferred.reject({
+          status: "fail",
+          data: data,
+          response: response,
+        });
+      })
+      .on("timeout", function restlerTimeout(ms) {
+        deferred.reject({
+          status: "timeout",
+          data: ms,
+          response: {},
+        });
+      })
+      .on("error", function restlerError(err, response) {
+        deferred.reject({
+          status: "error",
+          data: err,
+          response: response,
+        });
+      });
 
     return deferred.promise;
   };

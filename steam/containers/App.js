@@ -3,12 +3,14 @@ module.exports = (function(undefined){
 
   function App(app) {
     this.id                 = app.steam_appid;
+    this.type               = app.type;
     this.name               = app.name;
     this.controllerSupport  = app.controller_support ? app.controller_support : 'None';
     this.description        = app.detailed_description;
+    this.shortDescription   = app.short_description;
     this.about              = app.about_the_game;
     this.header             = app.header_image;
-    this.website            = !app.website ? app.website : 'None';
+    this.website            = app.website ? app.website : 'None';
     this.pcRequirements     = app.pc_requirements;
     this.legal              = app.legal_notice ? app.legal_notice : 'None';
     this.developers         = app.developers ? app.developers : undefined;
@@ -19,6 +21,8 @@ module.exports = (function(undefined){
     this.categories         = app.categories ? app.categories : undefined;
     this.genres             = app.genres ? app.genres : undefined;
     this.release            = app.release_date;
+    this.screenshots        = app.screenshots ? app.screenshots.map(function(s){ return s.path_full; }) : undefined;
+    this.package_groups     = app.package_groups;
   }
 
   App.prototype.getFakeMetacriticObject = function getFakeMetacriticObject(){
