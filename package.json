@@ -28,7 +28,7 @@
     "jasmine-node": "^1.14.5"
   },
   "dependencies": {
-    "merge": "^1.2.0",
+    "merge": "^2.1.0",
     "q": "^1.1.2",
     "restler": "^3.2.2"
   }
